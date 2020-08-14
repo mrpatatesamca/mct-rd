@@ -26,7 +26,11 @@ namespace mct_rd
         public int lineCount;
         static string programyolu = System.AppDomain.CurrentDomain.BaseDirectory;
         string sadece_tarih = DateTime.Now.ToString("dd-MM-yyyy");
+        string sadece_saat = DateTime.Now.ToString("HH:mm:ss");
         string dosyaTarih;
+        DateTime modification;
+        DateTime creation;
+        DateTime elapsedtime;
 
         //string stdDetails = "{0, -26} {1, -25} {2, -17} {3, -18} {4, -21} {5, -26} {6, -24} {7, -31} {8, -22} {9, -22} {10, -25} {11, -43} {12, -20} {13, -41} {14, -20}";
         //string stdDetails2 = "{0, -20} {1, -20} {2, -20} {3, -20} {4, -20} {5, -20} {6, -20} {7, -20} {8, -20} {9, -20} {10, -20} {11, -35} {12, -20} {13, -28} {14, -20}";
@@ -39,7 +43,7 @@ namespace mct_rd
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dosyaTarihLabel.Text = "Kayıt Tarihi: " + sadece_tarih;
+            dosyaTarihLabel.Text = "Kayıt Zamanı: " + sadece_tarih + " | " + sadece_saat;
         }
 
         public void editorDosyaYukle()
@@ -94,33 +98,85 @@ namespace mct_rd
                     openFileDialog.RestoreDirectory = true;
                     if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
+                        //ortadaki resimi ve yazıyı gizle.
+                        dosyaAcLabel.Visible = false;
+                        dosyaAcPictureBox.Visible = false;
+
                         //tabloyu temizle ve yenile.
                         dataGridView1.Rows.Clear();
                         dataGridView1.Refresh();
                         //yükleme ekranını aç.
                         yuklemeForm yuklemefrm = new yuklemeForm();
                         yuklemefrm.Show();
+                        yuklemefrm.Focus();
                         yuklemebaslatTimer.Start();
 
-                        //dosyanın dizinini evrensel bir değişkene ata
+                        //dosyanın dizinini evrensel bir değişkene ata.
                         dosyaDizinEvrensel = openFileDialog.FileName;
+                        //dosyanın uzantısını al. (örn: .txt | .xml)
+                        dosyauzanti = Path.GetExtension(openFileDialog.FileName); 
                         //pencere başlığının adını değiştir.
                         this.Text = "mCTerminal Okuyucu -- " + dosyaDizinEvrensel;
+                        //satır sayısını al.
+                        var lineCount = File.ReadLines(openFileDialog.FileName).Count();
                         //data değişkenine seçilen dosyadaki verileri yaz.
                         data = File.ReadAllText(openFileDialog.FileName);
-                        string dosyaTarihAyiklama1 = openFileDialog.SafeFileName.Substring(openFileDialog.SafeFileName.IndexOf("-") + 1);
-                        string dosyaTarihAyiklama2 = dosyaTarihAyiklama1.Substring(0, dosyaTarihAyiklama1.IndexOf("."));
-                        dosyaTarih = dosyaTarihAyiklama2;
+                        creation = File.GetCreationTime(dosyaDizinEvrensel); //dosya oluşturulma tarihi
+                        modification = File.GetLastWriteTime(dosyaDizinEvrensel); //dosya değiştirilme tarihi
+                        //karakter sayısını al.
+                        var numberOfCharacters = File.ReadAllLines(openFileDialog.FileName).Sum(s => s.Length);
 
-                        dosyaTarihLabel.Text = "Kayıt Tarihi: " + dosyaTarih;
+                        //dosya bilgilerini globalde olabilmesi için ayar kısmına yaz.
+                        mct_rd.Properties.Settings.Default.dosyaOlusturulmaSaat = creation.Hour + ":" + creation.Minute + ":" + creation.Second;
+                        mct_rd.Properties.Settings.Default.dosyaOlusturulmaTarih = creation.Day + "-" + creation.Month.ToString("00") + "-" + creation.Year;
+                        mct_rd.Properties.Settings.Default.dosyaDegistirilmeTarih = modification.Day + "-" + modification.Month.ToString("00") + "-" + modification.Year;
+                        mct_rd.Properties.Settings.Default.dosyaDegistirilmeSaat = modification.Hour + ":" + modification.Minute + ":" + modification.Second;
+                        mct_rd.Properties.Settings.Default.dosyaDizin = openFileDialog.FileName;
+                        mct_rd.Properties.Settings.Default.dosyaUzanti = dosyauzanti;
+                        mct_rd.Properties.Settings.Default.dosyaKarakterSayi = numberOfCharacters.ToString();
+                        mct_rd.Properties.Settings.Default.dosyaSatirSayi = lineCount.ToString();
+                        mct_rd.Properties.Settings.Default.dosyaAdi = openFileDialog.SafeFileName;
 
+                        //bilgileri doldur.
+                        karakterSayiLabel.Text = "Karakter Sayısı: " + numberOfCharacters.ToString();
+                        satirSayiLabel.Text = "Satır Sayısı: " + lineCount.ToString();
+                        
+                        dosyaTarihLabel.Text = "Kayıt Zamanı: " + creation.Day + "-" + creation.Month.ToString("00") + "-" + creation.Year + " | " + creation.Hour + ":" + creation.Minute + ":" + creation.Second;
                         dosyaTarihLabel.Focus();
+                        editorDosyaTurBelirle();
                     }
                 }
             }
             catch
             {
                 MessageBox.Show("Dosya açılırken bir hata oluştu!", "Hata!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void editorDosyaTurBelirle()
+        {
+            if (dosyauzanti == ".xml") //eğer dosya Extensible Markup belgesi ise
+            {
+                dosyaturuLabel.Text = "Extensible Markup Belgesi | *.xml";
+                mct_rd.Properties.Settings.Default.dosyaTuru = "Extensible Markup Belgesi";
+            }
+
+            if (dosyauzanti == ".log") //eğer dosya Batch belgesi ise.
+            {
+                dosyaturuLabel.Text = "Log Belgesi | *.log";
+                mct_rd.Properties.Settings.Default.dosyaTuru = "Log Belgesi";
+            }
+
+            if (dosyauzanti == ".txt") //eğer dosya düz metin belgesi ise.
+            {
+                dosyaturuLabel.Text = "Metin Belgesi | *.txt";
+                mct_rd.Properties.Settings.Default.dosyaTuru = "Metin Belgesi";
+            }
+
+            if (dosyauzanti == ".vs") //eğer dosya verilog belgesi ise.
+            {
+                dosyaturuLabel.Text = "Verilog Dosyası | *.vs";
+                mct_rd.Properties.Settings.Default.dosyaTuru = "Verilog Dosyası";
             }
         }
 
@@ -149,6 +205,57 @@ namespace mct_rd
                 }
             }
 
+        }
+
+        private void toolStripDropDownButton2_Click(object sender, EventArgs e)
+        {
+            //hakkında ekranını aç.
+            hakkindaForm hakkindafrm = new hakkindaForm();
+            hakkindafrm.Show();
+        }
+
+        private void dosyaAcPictureBox_Click(object sender, EventArgs e)
+        {
+            editorDosyaAc();
+        }
+
+        private void dosyaAcLabel_Click(object sender, EventArgs e)
+        {
+            editorDosyaAc();
+        }
+
+        private void toolStripDropDownButton4_Click(object sender, EventArgs e)
+        {
+            //tabloyu temizle ve yenile.
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
+
+            //ortadaki resimi ve yazıyı göster.
+            dosyaAcLabel.Visible = true;
+            dosyaAcPictureBox.Visible = true;
+
+            //verileri sıfırla
+            dosyaTarihLabel.Text = "Kayıt Zamanı: " + sadece_tarih + " | " + sadece_saat;
+            satirSayiLabel.Text = "Satır Sayısı: 0";
+            karakterSayiLabel.Text = "Karakter Sayısı: 0";
+            this.Text = "mCTerminal Okuyucu";
+            dosyaturuLabel.Text = "Dosya Türü: Metin Belgesi | *.txt";
+            Properties.Settings.Default.Reset();
+        }
+
+        private void bütünÇizgileriGösterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+        }
+
+        private void sadeceDikeyÇizgilerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
+        }
+
+        private void sadeceYatayÇizgilerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
         }
     }
 }
