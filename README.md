@@ -1,6 +1,6 @@
-# mCTerminal-updater - a.k.a MRCosmosTerminal-updater
+# mct-rd - a.k.a MRCosmosTerminal-reader
 
-mCTerminal-updater Cosmos Takımı için hazırlanan ve Berke Aydin tarafından geliştirilen mCTerminal programını güncellemeye yarayan bir programdır.
+mct-rd Cosmos Takımı için hazırlanan ve Berke Aydin tarafından geliştirilen mCTerminal programı tarafından kaydedilen log kayıtlarını okumaya yarayan bir programdır.
 ###### Instagram: [@mrpatatesamca](https://www.instagram.com/mrpatatesamca)
 ###### Proje Websitesi: [www.cosmostakimi.com](https://www.cosmostakimi.com)
 ###### mCTerminal GitHub Sayfası: [GitHub-mCTerminal](https://github.com/mrpatatesamca/mCTerminal)
