@@ -33,13 +33,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.dosyaAçToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yeniOkumaPenceresiAçToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton5 = new System.Windows.Forms.ToolStripDropDownButton();
             this.tabloÇizgileriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bütünÇizgileriGösterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sadeceDikeyÇizgilerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sadeceYatayÇizgilerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton4 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.şuAnkiTabloyuBoşaltToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.saat = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +69,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dosyaAcLabel = new System.Windows.Forms.Label();
             this.dosyaAcPictureBox = new System.Windows.Forms.PictureBox();
+            this.dosyaVeProgramBilgileriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -80,7 +83,6 @@
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownButton1,
-            this.toolStripDropDownButton3,
             this.toolStripDropDownButton5,
             this.toolStripDropDownButton4,
             this.toolStripDropDownButton2});
@@ -93,29 +95,35 @@
             // 
             // toolStripDropDownButton1
             // 
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dosyaAçToolStripMenuItem,
+            this.yeniOkumaPenceresiAçToolStripMenuItem});
             this.toolStripDropDownButton1.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.toolStripDropDownButton1.Image = global::mct_rd.Properties.Resources.folder;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.ShowDropDownArrow = false;
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(76, 22);
-            this.toolStripDropDownButton1.Text = "Dosya Aç";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(68, 22);
+            this.toolStripDropDownButton1.Text = "Dosya";
             this.toolStripDropDownButton1.ToolTipText = "Okumak için bir dosya açar";
-            this.toolStripDropDownButton1.Click += new System.EventHandler(this.toolStripDropDownButton1_Click);
             // 
-            // toolStripDropDownButton3
+            // dosyaAçToolStripMenuItem
             // 
-            this.toolStripDropDownButton3.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.toolStripDropDownButton3.Image = global::mct_rd.Properties.Resources.new_file;
-            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton3.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
-            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.ShowDropDownArrow = false;
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(161, 22);
-            this.toolStripDropDownButton3.Text = "Yeni Okuma Penceresi Aç";
-            this.toolStripDropDownButton3.ToolTipText = "Yeni bir pencere açar";
-            this.toolStripDropDownButton3.Click += new System.EventHandler(this.toolStripDropDownButton3_Click);
+            this.dosyaAçToolStripMenuItem.Image = global::mct_rd.Properties.Resources.folder;
+            this.dosyaAçToolStripMenuItem.Name = "dosyaAçToolStripMenuItem";
+            this.dosyaAçToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.dosyaAçToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.dosyaAçToolStripMenuItem.Text = "Dosya Aç";
+            this.dosyaAçToolStripMenuItem.Click += new System.EventHandler(this.dosyaAçToolStripMenuItem_Click);
+            // 
+            // yeniOkumaPenceresiAçToolStripMenuItem
+            // 
+            this.yeniOkumaPenceresiAçToolStripMenuItem.Image = global::mct_rd.Properties.Resources.new_file;
+            this.yeniOkumaPenceresiAçToolStripMenuItem.Name = "yeniOkumaPenceresiAçToolStripMenuItem";
+            this.yeniOkumaPenceresiAçToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.yeniOkumaPenceresiAçToolStripMenuItem.Size = new System.Drawing.Size(250, 22);
+            this.yeniOkumaPenceresiAçToolStripMenuItem.Text = "Yeni Okuma Penceresi Aç";
+            this.yeniOkumaPenceresiAçToolStripMenuItem.Click += new System.EventHandler(this.yeniOkumaPenceresiAçToolStripMenuItem_Click);
             // 
             // toolStripDropDownButton5
             // 
@@ -126,8 +134,7 @@
             this.toolStripDropDownButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton5.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
             this.toolStripDropDownButton5.Name = "toolStripDropDownButton5";
-            this.toolStripDropDownButton5.ShowDropDownArrow = false;
-            this.toolStripDropDownButton5.Size = new System.Drawing.Size(78, 22);
+            this.toolStripDropDownButton5.Size = new System.Drawing.Size(87, 22);
             this.toolStripDropDownButton5.Text = "Görünüm";
             this.toolStripDropDownButton5.ToolTipText = "Görünüm seçeneklerini ayarlayın";
             // 
@@ -146,7 +153,8 @@
             // 
             this.bütünÇizgileriGösterToolStripMenuItem.Image = global::mct_rd.Properties.Resources.sidebar;
             this.bütünÇizgileriGösterToolStripMenuItem.Name = "bütünÇizgileriGösterToolStripMenuItem";
-            this.bütünÇizgileriGösterToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.bütünÇizgileriGösterToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B)));
+            this.bütünÇizgileriGösterToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.bütünÇizgileriGösterToolStripMenuItem.Text = "Bütün Çizgileri Göster";
             this.bütünÇizgileriGösterToolStripMenuItem.Click += new System.EventHandler(this.bütünÇizgileriGösterToolStripMenuItem_Click);
             // 
@@ -154,7 +162,8 @@
             // 
             this.sadeceDikeyÇizgilerToolStripMenuItem.Image = global::mct_rd.Properties.Resources.vertical_align;
             this.sadeceDikeyÇizgilerToolStripMenuItem.Name = "sadeceDikeyÇizgilerToolStripMenuItem";
-            this.sadeceDikeyÇizgilerToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.sadeceDikeyÇizgilerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.sadeceDikeyÇizgilerToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.sadeceDikeyÇizgilerToolStripMenuItem.Text = "Sadece Dikey Çizgiler";
             this.sadeceDikeyÇizgilerToolStripMenuItem.Click += new System.EventHandler(this.sadeceDikeyÇizgilerToolStripMenuItem_Click);
             // 
@@ -162,36 +171,46 @@
             // 
             this.sadeceYatayÇizgilerToolStripMenuItem.Image = global::mct_rd.Properties.Resources.horizontal_align;
             this.sadeceYatayÇizgilerToolStripMenuItem.Name = "sadeceYatayÇizgilerToolStripMenuItem";
-            this.sadeceYatayÇizgilerToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.sadeceYatayÇizgilerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
+            this.sadeceYatayÇizgilerToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.sadeceYatayÇizgilerToolStripMenuItem.Text = "Sadece Yatay Çizgiler";
             this.sadeceYatayÇizgilerToolStripMenuItem.Click += new System.EventHandler(this.sadeceYatayÇizgilerToolStripMenuItem_Click);
             // 
             // toolStripDropDownButton4
             // 
+            this.toolStripDropDownButton4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.şuAnkiTabloyuBoşaltToolStripMenuItem});
             this.toolStripDropDownButton4.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.toolStripDropDownButton4.Image = global::mct_rd.Properties.Resources.brush;
             this.toolStripDropDownButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton4.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
             this.toolStripDropDownButton4.Name = "toolStripDropDownButton4";
-            this.toolStripDropDownButton4.ShowDropDownArrow = false;
-            this.toolStripDropDownButton4.Size = new System.Drawing.Size(66, 22);
+            this.toolStripDropDownButton4.Size = new System.Drawing.Size(75, 22);
             this.toolStripDropDownButton4.Text = "Temizle";
             this.toolStripDropDownButton4.ToolTipText = "Şu anki penceredeki verileri temizler";
-            this.toolStripDropDownButton4.Click += new System.EventHandler(this.toolStripDropDownButton4_Click);
+            // 
+            // şuAnkiTabloyuBoşaltToolStripMenuItem
+            // 
+            this.şuAnkiTabloyuBoşaltToolStripMenuItem.Image = global::mct_rd.Properties.Resources.brush;
+            this.şuAnkiTabloyuBoşaltToolStripMenuItem.Name = "şuAnkiTabloyuBoşaltToolStripMenuItem";
+            this.şuAnkiTabloyuBoşaltToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
+            this.şuAnkiTabloyuBoşaltToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.şuAnkiTabloyuBoşaltToolStripMenuItem.Text = "Şu Anki Tabloyu Boşalt";
+            this.şuAnkiTabloyuBoşaltToolStripMenuItem.Click += new System.EventHandler(this.şuAnkiTabloyuBoşaltToolStripMenuItem_Click);
             // 
             // toolStripDropDownButton2
             // 
             this.toolStripDropDownButton2.AutoToolTip = false;
+            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dosyaVeProgramBilgileriToolStripMenuItem});
             this.toolStripDropDownButton2.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.toolStripDropDownButton2.Image = global::mct_rd.Properties.Resources.info;
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Margin = new System.Windows.Forms.Padding(10, 1, 0, 2);
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.ShowDropDownArrow = false;
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(77, 22);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(86, 22);
             this.toolStripDropDownButton2.Text = "Hakkında";
             this.toolStripDropDownButton2.ToolTipText = "Program ve açılan dosya hakkında bilgileri gösterir";
-            this.toolStripDropDownButton2.Click += new System.EventHandler(this.toolStripDropDownButton2_Click);
             // 
             // dataGridView1
             // 
@@ -479,6 +498,15 @@
             this.dosyaAcPictureBox.TabStop = false;
             this.dosyaAcPictureBox.Click += new System.EventHandler(this.dosyaAcPictureBox_Click);
             // 
+            // dosyaVeProgramBilgileriToolStripMenuItem
+            // 
+            this.dosyaVeProgramBilgileriToolStripMenuItem.Image = global::mct_rd.Properties.Resources.info;
+            this.dosyaVeProgramBilgileriToolStripMenuItem.Name = "dosyaVeProgramBilgileriToolStripMenuItem";
+            this.dosyaVeProgramBilgileriToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
+            this.dosyaVeProgramBilgileriToolStripMenuItem.Size = new System.Drawing.Size(249, 22);
+            this.dosyaVeProgramBilgileriToolStripMenuItem.Text = "Dosya ve Program Bilgileri";
+            this.dosyaVeProgramBilgileriToolStripMenuItem.Click += new System.EventHandler(this.dosyaVeProgramBilgileriToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -512,7 +540,6 @@
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Timer yuklemebaslatTimer;
         private System.Windows.Forms.Label dosyaTarihLabel;
@@ -546,6 +573,10 @@
         private System.Windows.Forms.ToolStripMenuItem bütünÇizgileriGösterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sadeceDikeyÇizgilerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sadeceYatayÇizgilerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dosyaAçToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem yeniOkumaPenceresiAçToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem şuAnkiTabloyuBoşaltToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dosyaVeProgramBilgileriToolStripMenuItem;
     }
 }
 

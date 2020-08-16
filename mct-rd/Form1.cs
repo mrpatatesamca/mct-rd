@@ -180,16 +180,6 @@ namespace mct_rd
             }
         }
 
-        private void toolStripDropDownButton3_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("mct-rd.exe");
-        }
-
-        private void toolStripDropDownButton1_Click(object sender, EventArgs e)
-        {
-            editorDosyaAc();
-        }
-
         private void yuklemebaslatTimer_Tick(object sender, EventArgs e)
         {
             yuklemebaslatTimer.Stop();
@@ -207,13 +197,6 @@ namespace mct_rd
 
         }
 
-        private void toolStripDropDownButton2_Click(object sender, EventArgs e)
-        {
-            //hakkında ekranını aç.
-            hakkindaForm hakkindafrm = new hakkindaForm();
-            hakkindafrm.Show();
-        }
-
         private void dosyaAcPictureBox_Click(object sender, EventArgs e)
         {
             editorDosyaAc();
@@ -224,7 +207,32 @@ namespace mct_rd
             editorDosyaAc();
         }
 
-        private void toolStripDropDownButton4_Click(object sender, EventArgs e)
+        private void bütünÇizgileriGösterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+        }
+
+        private void sadeceDikeyÇizgilerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
+        }
+
+        private void sadeceYatayÇizgilerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+        }
+
+        private void dosyaAçToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            editorDosyaAc();
+        }
+
+        private void yeniOkumaPenceresiAçToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("mct-rd.exe");
+        }
+
+        private void şuAnkiTabloyuBoşaltToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //tabloyu temizle ve yenile.
             dataGridView1.Rows.Clear();
@@ -243,19 +251,11 @@ namespace mct_rd
             Properties.Settings.Default.Reset();
         }
 
-        private void bütünÇizgileriGösterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void dosyaVeProgramBilgileriToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.Single;
-        }
-
-        private void sadeceDikeyÇizgilerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleVertical;
-        }
-
-        private void sadeceYatayÇizgilerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            //hakkında ekranını aç.
+            hakkindaForm hakkindafrm = new hakkindaForm();
+            hakkindafrm.Show();
         }
     }
 }
